@@ -32,5 +32,11 @@
 		
 	</changeSet>
 
+
+	<changeSet id="2" author="MRO">
+		<addColumn tableName="CATEGORY">
+			<column name="NAME" type="VARCHAR(50)" />
+		</addColumn>
+	</changeSet>
 	
 </databaseChangeLog>
