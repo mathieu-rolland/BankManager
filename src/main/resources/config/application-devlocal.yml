@@ -1,0 +1,27 @@
+
+spring:
+  profiles:
+    active:
+    - devlocal
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:bank-manager
+    username: bankmanager-dev
+    password: bankmanager-dev
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-plateform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  liquibase:
+    contexts: dev
+  security:
+    user:
+      name: admin
+      password: admin
+      roles:
+      - ADMIN

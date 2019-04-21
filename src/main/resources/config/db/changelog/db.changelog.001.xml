@@ -39,4 +39,11 @@
 		</addColumn>
 	</changeSet>
 	
+	<changeSet id="3" author="MRO" context="dev">
+		<loadData encoding="UTF-8"
+              file="config/db/data/category-dev.csv"
+              separator=";"
+              tableName="CATEGORY"/>
+	</changeSet>
+	
 </databaseChangeLog>
