@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,16 +15,21 @@ import javax.persistence.Table;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table( name = "OPERATIONS" )
 @Getter
+@Setter
 public class Operation {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO )
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	@Column( name =  "ID" )
 	private long id;
+	
+	@Column(name = "LABEL")
+	private String label;
 	
 	@Column(name = "AMOUNT")
 	private BigDecimal amount;
@@ -32,7 +38,7 @@ public class Operation {
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(name = "OPERATION_WAY" )
 	private OperationWayEnum operationWay;
 	

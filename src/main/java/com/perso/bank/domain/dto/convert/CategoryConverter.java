@@ -3,7 +3,6 @@ package com.perso.bank.domain.dto.convert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import com.perso.bank.domain.dto.CategoryDTO;
 import com.perso.bank.repository.OperationRepository;
 
 @Service
-public class CategoryConverter implements DtoConverter<Category, CategoryDTO>{
+public class CategoryConverter extends AbstractDtoConverter<Category, CategoryDTO>{
 
 	@Autowired 
 	private OperationRepository operationRepository;
@@ -43,24 +42,6 @@ public class CategoryConverter implements DtoConverter<Category, CategoryDTO>{
 				.forEach( e -> operationsId.add(e.getId()));
 		
 		return dto;
-	}
-
-	@Override
-	public List<Category> createFromDto(List<CategoryDTO> dto) {
-		return Optional.ofNullable( dto )
-			.orElse(new ArrayList<>())
-			.stream()
-			.map( e -> createFromDto( e ) )
-			.collect( Collectors.toList() );
-	}
-
-	@Override
-	public List<CategoryDTO> createDto(List<Category> source) {
-		return Optional.ofNullable( source )
-				.orElse(new ArrayList<>())
-				.stream()
-				.map( e -> createDto( e ) )
-				.collect( Collectors.toList() );
 	}
 
 }

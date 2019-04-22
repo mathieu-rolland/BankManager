@@ -19,6 +19,6 @@ public class CategoryDTO {
 	
 	private String name;
 	
-	private List<Integer> operations;
+	private List<Long> operations;
 	
 }

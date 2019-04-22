@@ -1,0 +1,5 @@
+ID;AMOUNT;OPERATION_WAY;CATEGORY_ID;LABEL
+0;-1;DEBIT;1;Decompte de 1
+2;-774;DEBIT;3;Billet d'avion pour la Guyane
+3;-91;DEBIT;3;Billet d'avion pour la Guyane2
+4;+9;CREDIT;1;Salaire

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.perso.bank.domain.Operation;
 
 @Repository
-public interface OperationRepository extends JpaRepository<Operation, Integer> {
+public interface OperationRepository extends JpaRepository<Operation, Long> {
 
 }

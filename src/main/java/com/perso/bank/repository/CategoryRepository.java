@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.perso.bank.domain.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 }

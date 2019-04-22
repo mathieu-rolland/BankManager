@@ -46,4 +46,21 @@
               tableName="CATEGORY"/>
 	</changeSet>
 	
+	
+	<changeSet id="4" author="MRO">
+	
+		<modifyDataType tableName="OPERATIONS" columnName="OPERATION_WAY" newDataType="VARCHAR(10)"/>
+		<addColumn tableName="OPERATIONS">
+			<column name="LABEL" type="VARCHAR(300)" />
+		</addColumn>
+	
+	</changeSet>
+	
+	<changeSet id="5" author="MRO" context="dev">
+		<loadData encoding="UTF-8"
+              file="config/db/data/operations-dev.csv"
+              separator=";"
+              tableName="OPERATIONS"/>
+	</changeSet>
+	
 </databaseChangeLog>
