@@ -4,11 +4,7 @@
         <td>{{operation.label}}</td>
         <td>{{operation.amount}}</td>
         <td>
-            <select v-model="selected_category" :options="categories" @change="changeSelected">
-                <option v-for="category in categories" v-bind:value="category.id">
-                    {{category.name}}/{{operation.category == category.id}}
-                </option>
-            </select>
+            <b-form-select v-model="selected" :options="optionsCategory" ></b-form-select>
         </td>
         <td>{{operation.operationWay}}</td>
         <td>
@@ -38,18 +34,36 @@ export default {
     data: function(){
         return {
             selected_category: "",
-            modal: undefined
+            modal: undefined,
+            optionsCategory: [],
+            selected: undefined
         }
     },
     mounted: function(){
         if( this.operation ){
             this.selected_category = this.operation.category;
         }
+        if( this.categories ){
+            this.formatCategoryArray();
+        }
+    },
+    watch: {
+        categories: function(){
+            this.optionsCategory = [];
+            this.formatCategoryArray();
+        }
     },
     methods: {
-        changeSelected: function(){
-            this.operation.category = this.selected_category;
-            this.editOperation();
+        formatCategoryArray: function(){
+            var self = this;
+            if( this.categories ){
+                self.categories.forEach( function(el){
+                    self.optionsCategory.push({value:el.id,text:el.name,obj:el});
+                });
+                if ( self.operation.category ){
+                    self.selected = self.operation.category.id;
+                }
+            }
         },
         deleteOperation: function(){
             axios.delete( "http://localhost:8080/operations/delete" , {
@@ -62,8 +76,7 @@ export default {
         },
         editOperation: function(){
             this.operation.category = this.selected_category;
-            axios.post( "http://localhost:8080/operations/create" , this.operation
-            )
+            axios.post( "http://localhost:8080/operations/create" , this.operation )
             .then( this.callback )
             .catch(function (error) {
                 console.log(error);

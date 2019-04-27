@@ -38,11 +38,9 @@ export default {
     },
     watch: {
         operations: function(){
-            console.log("operations changed");
             this.createSeries();
         },
         categories: function(){
-            console.log("categories changed");
             this.createSeries();
         }
     },
@@ -51,40 +49,50 @@ export default {
     },
     methods: {
         createSeries: function(){
-            if( this.operations && this.categories ){
 
+            if( this.operations && this.categories ){
+                var self = this;
                 var serie = {
                     name: this.titleProps,
                     data:[]
                 };
-                
+
                 this.operations.forEach( el => {
-                    console.log(this.categories);
-                    var opCategory = this.categories[ el.category ];
-                    if( opCategory == undefined ){
-                        console.log("category undefined", opCategory);
-                        opCategory = {
-                            name : 'undefined',
-                            color : 'RED'
-                        };
-                    }
-                    serie.data.push( { 
-                        name: opCategory.name,
-                        y: el.amount,
-                        color: opCategory.color
-                    } );
+                    self.groupOperationByCategory( serie.data , el );
                 });
+
+                //Suppression des series déjà ajouter sinon bug sur ajout multiple de serie.
                 var size = this.$refs.highcharts.chart.series.length;
                 for( var i = 0 ; i < size ; i++ ){
                     this.$refs.highcharts.chart.series[i].remove();   
                 }
                 this.$refs.highcharts.chart.addSeries( serie );
-                console.log(serie);
-                
+    
+            }
+        },
+
+        groupOperationByCategory: function( operationsArray, operationToAdd ){
+            var category = operationToAdd.category;
+            var data = undefined;
+            if( category ){
+                operationsArray.forEach( function(el){
+                    if( el.name == category.name ){
+                        data = el;
+                        el.y = el.y + operationToAdd.amount;
+                    }
+                });
+                if( !data ){
+                    data = {
+                        name: category.name,
+                        y: operationToAdd.amount,
+                        color: category.color
+                    }
+                    operationsArray.push( data );
+                }
+                console.log('['+this.titleProps+'] Add data : ' , category.name, operationsArray );
             }
         }
     },
-
 
 }
 </script>

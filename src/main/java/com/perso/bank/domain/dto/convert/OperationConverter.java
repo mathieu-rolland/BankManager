@@ -11,7 +11,7 @@ import com.perso.bank.repository.CategoryRepository;
 public class OperationConverter extends AbstractDtoConverter<Operation, OperationDTO>{
 
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryConverter categoryConverter;
 	
 	@Override
 	public Operation createFromDto(OperationDTO dto) {
@@ -20,7 +20,7 @@ public class OperationConverter extends AbstractDtoConverter<Operation, Operatio
 		op.setAmount(dto.getAmount());
 		op.setOperationWay(dto.getOperationWay());
 		op.setLabel( dto.getLabel() );
-		op.setCategory( categoryRepository.findById(dto.getCategory()).get() );
+		op.setCategory( categoryConverter.createFromDto( dto.getCategory() ) );
 		return op;
 	}
 
@@ -32,7 +32,7 @@ public class OperationConverter extends AbstractDtoConverter<Operation, Operatio
 		dto.setOperationWay( source.getOperationWay() );
 		dto.setLabel( source.getLabel() );
 		if( source.getCategory() != null ) {
-			dto.setCategory( source.getCategory().getId() );
+			dto.setCategory( categoryConverter.createDto( source.getCategory() ) );
 		}
 		return dto;
 	}

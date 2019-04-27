@@ -1,6 +1,7 @@
 <template>
 
     <div class="create-operation-modal">
+
         <b-button v-b-modal="'collapse-create-operation'" variant="primary">Nouvelle opération</b-button>
 
         <b-modal id="collapse-create-operation" class="mt-2" ref="modal" @ok="createOperation" title="Créer une opération">
@@ -48,12 +49,20 @@ export default {
 
     methods: {
         createOperation: function(){
+            var self = this;
+            var selectedCategoryObject = undefined;
+            this.categories.forEach( function(el){
+                if( el.id == self.selected_category ){
+                    selectedCategoryObject = el;
+                    return;
+                }
+            });
 
             axios  
                 .post('http://localhost:8080/operations/create' , {
                     label: this.label,
                     amount: this.amount,
-                    category: this.selected_category,
+                    category: selectedCategoryObject,
                     operationWay: this.selected_way
                 })
                 .then( this.callback )

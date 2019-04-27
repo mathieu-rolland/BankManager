@@ -64,7 +64,6 @@ export default {
         map[ el.id ] = el;
       }); 
       this.categoryHashmap = map;
-      console.log(this.categoryHashmap);
     }
   },
 

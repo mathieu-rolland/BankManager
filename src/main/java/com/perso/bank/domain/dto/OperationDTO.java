@@ -15,7 +15,7 @@ public class OperationDTO {
 	
 	private BigDecimal amount;
 	
-	private long category;
+	private CategoryDTO category;
 	
 	private OperationWayEnum operationWay;
 	
