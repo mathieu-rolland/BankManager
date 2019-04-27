@@ -89,7 +89,6 @@ export default {
                     }
                     operationsArray.push( data );
                 }
-                console.log('['+this.titleProps+'] Add data : ' , category.name, operationsArray );
             }
         }
     },
