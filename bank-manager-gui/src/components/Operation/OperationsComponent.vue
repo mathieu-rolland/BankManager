@@ -1,12 +1,6 @@
 <template>
 
     <div>
-        <Operation name="test"/>
-
-       <!-- <b-container class="bv-example-row" v-for="operation in operations">
-            <Operation :operation="operation" :categories="categories" />
-        </b-container>-->
-
 
         <table class="table">
             <thead>
@@ -14,6 +8,7 @@
                     <th>Libellé</th>
                     <th>Montant</th>
                     <th>Category</th>
+                    <th>Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>

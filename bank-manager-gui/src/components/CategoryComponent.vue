@@ -2,8 +2,6 @@
 
     <div class="category-components">
 
-        <h2> Mes categories</h2>
-
         <b-spinner variant="primary" label="Spinning" v-if="!page_loaded"></b-spinner>
 
         <table class="table">

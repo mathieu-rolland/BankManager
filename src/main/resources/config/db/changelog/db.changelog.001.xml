@@ -14,7 +14,6 @@
 			<column name="COLOR" type="VARCHAR(30)"/>
 		</createTable>
 	
-	
 		<createTable tableName="OPERATIONS">
 			<column name="ID" type="bigint" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />

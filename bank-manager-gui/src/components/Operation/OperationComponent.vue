@@ -10,13 +10,12 @@
                 </option>
             </select>
         </td>
+        <td>{{operation.operationWay}}</td>
         <td>
-            <img v-b-modal="'collapse-modify-category'" 
+            <img v-b-modal.modal-operation
                 variant="primary" 
-                v-on:click="editOperation()" 
                 src="../../assets/edit.png"
-                class="edit button" />
-
+                class="edit button"/>
             <img 
                 class="delete button" alt="delete.png" src="../../assets/delete.png"
                 v-on:click="deleteOperation()"/>
@@ -38,7 +37,8 @@ export default {
     ],
     data: function(){
         return {
-            selected_category: ""
+            selected_category: "",
+            modal: undefined
         }
     },
     mounted: function(){
