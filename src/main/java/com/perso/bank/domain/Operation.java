@@ -1,6 +1,7 @@
 package com.perso.bank.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,5 +42,8 @@ public class Operation {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "OPERATION_WAY" )
 	private OperationWayEnum operationWay;
+	
+	@Column(name = "DATE")
+	private LocalDateTime date;
 	
 }

@@ -55,7 +55,13 @@
 	
 	</changeSet>
 	
-	<changeSet id="5" author="MRO" context="dev">
+	<changeSet id="6" author="MRO">
+		<addColumn tableName="OPERATIONS">
+			<column name="DATE" type="DATE"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="7" author="MRO" context="dev">
 		<loadData encoding="UTF-8"
               file="config/db/data/operations-dev.csv"
               separator=";"

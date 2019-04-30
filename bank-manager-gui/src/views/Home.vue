@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HomeComponent msg="Welcome to Your Vue.js App"/>
+    <img class="bank-icon" alt="Vue logo" src="../assets/bank-main.png" />
+    <HomeComponent msg="Bank Manager App"/>
   </div>
 </template>
 
@@ -16,3 +16,12 @@ export default {
   }
 }
 </script>
+
+<style>
+
+  .bank-icon{
+    width: 200px;
+
+  }
+
+</style>

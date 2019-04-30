@@ -30,6 +30,7 @@ export default {
             chartOptions: {
                 chart: {
                     type: "pie",
+                    width: '500'
                 },
                 title: this.titleProps,
                 series: []
@@ -99,9 +100,9 @@ export default {
 <style>
 
     .bank-chart{
-        /*width: 500px;
+        width: 510px;
         margin: auto;
-        text-align:center;*/
+        text-align:center;
     }
 
 </style>

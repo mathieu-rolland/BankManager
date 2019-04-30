@@ -1,6 +1,7 @@
 package com.perso.bank.domain.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import com.perso.bank.domain.OperationWayEnum;
 
@@ -20,5 +21,7 @@ public class OperationDTO {
 	private OperationWayEnum operationWay;
 	
 	private String label;
+	
+	private LocalDateTime date;
 	
 }

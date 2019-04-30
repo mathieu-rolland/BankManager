@@ -1,8 +1,8 @@
-ID;AMOUNT;OPERATION_WAY;CATEGORY_ID;LABEL
-0;100;DEBIT;1;Course test 1
-1;150;DEBIT;1;Course test 2
-2;774;DEBIT;3;Billet d'avion pour la Guyane
-3;91;DEBIT;3;Billet d'avion pour Maripasoula
-4;500;CREDIT;1;Autre Crédit
-5;1000;CREDIT;4;Remboursement de test
-6;1000;CREDIT;4;Salaire de test
+ID;AMOUNT;OPERATION_WAY;CATEGORY_ID;LABEL;DATE
+0;100;DEBIT;1;Course test 1;2019-04-01T12:00:00
+1;150;DEBIT;1;Course test 2;2019-04-02T12:00:00
+2;774;DEBIT;3;Billet d'avion pour la Guyane;2019-04-03T12:00:00
+3;91;DEBIT;3;Billet d'avion pour Maripasoula;2019-04-04T12:00:00
+4;500;CREDIT;1;Autre Crédit;2019-04-05T12:00:00
+5;1000;CREDIT;4;Remboursement de test;2019-04-06T12:00:00
+6;1000;CREDIT;4;Salaire de test;2019-04-01T12:00:00

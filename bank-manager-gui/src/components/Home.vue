@@ -1,8 +1,22 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <HomePieChart :operations="debitOperations" :categories="categoryHashmap" titleProps="Débit"/>
-    <HomePieChart :operations="creditOperations" :categories="categoryHashmap" titleProps="Crédit"/>
+
+    <b-container class="row">
+      <b-row>
+        <b-col>
+          <HomePieChart :operations="debitOperations" :categories="categoryHashmap" titleProps="Débit"/>
+        </b-col>
+        <b-col>
+          <HomePieChart :operations="creditOperations" :categories="categoryHashmap" titleProps="Crédit"/>
+        </b-col> 
+        <b-col>
+          <Operations />
+        </b-col>
+
+      </b-row>
+    </b-container>
+
   </div>
 </template>
 
@@ -10,6 +24,8 @@
 
 import axios from 'axios'
 import HomePieChart from '@/components/HomePieChart.vue'
+import Operations from '@/components/Operation/OperationsComponent.vue'
+import Historical from '@/components/HistoricalComponent.vue'
 
 export default {
   name: 'home',
@@ -17,7 +33,7 @@ export default {
     msg: String
   },
   components:{
-    HomePieChart
+    HomePieChart, Operations, Historical
   },
   data: function(){
     return {
@@ -76,5 +92,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .row{
+    margin: auto;
+  }
 </style>

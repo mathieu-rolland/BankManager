@@ -21,6 +21,7 @@ public class OperationConverter extends AbstractDtoConverter<Operation, Operatio
 		op.setOperationWay(dto.getOperationWay());
 		op.setLabel( dto.getLabel() );
 		op.setCategory( categoryConverter.createFromDto( dto.getCategory() ) );
+		op.setDate( dto.getDate() );
 		return op;
 	}
 
@@ -31,6 +32,7 @@ public class OperationConverter extends AbstractDtoConverter<Operation, Operatio
 		dto.setAmount(source.getAmount());
 		dto.setOperationWay( source.getOperationWay() );
 		dto.setLabel( source.getLabel() );
+		dto.setDate( source.getDate() );
 		if( source.getCategory() != null ) {
 			dto.setCategory( categoryConverter.createDto( source.getCategory() ) );
 		}
