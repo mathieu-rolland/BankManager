@@ -41,7 +41,7 @@ export default {
     },
     mounted: function(){
         if( this.operation ){
-            this.selected_category = this.operation.category;
+            this.preSelectCategoryForCurrentOperation();
         }
         if( this.categories ){
             this.formatCategoryArray();
@@ -51,20 +51,31 @@ export default {
         categories: function(){
             this.optionsCategory = [];
             this.formatCategoryArray();
+        },
+        operation: function(){
+            this.preSelectCategoryForCurrentOperation();
         }
+
     },
     methods: {
         formatCategoryArray: function(){
             var self = this;
+
+            //remplissage de la liste des categories disponible
             if( this.categories ){
                 self.categories.forEach( function(el){
                     self.optionsCategory.push({value:el.id,text:el.name,obj:el});
                 });
-                if ( self.operation.category ){
-                    self.selected = self.operation.category.id;
-                }
             }
         },
+
+        preSelectCategoryForCurrentOperation: function(){
+            //selection de la categorie suivant l'operation
+            if ( this.operation.category ){
+                this.selected = this.operation.category.id;
+            }
+        },  
+
         deleteOperation: function(){
             axios.delete( "http://localhost:8080/operations/delete" , {
                 data: this.operation

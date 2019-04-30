@@ -13,17 +13,44 @@ export default {
 
     name: 'Historical View',
     props: {
-        operations: Array,
+        creditOperations: Array,
+        debitOperations: Array
     },
     mounted: function(){
 
+    },
+    watch: {
+        creditOperations: function(){
+            this.updateChart();
+        },
+        debitOperations: function(){
+            this.updateChart();
+        }
     },
     data: function(){
         return {
             highchart: undefined,
         }
     },
-    methods: function(){
+    methods: {
+
+        updateChart: function(){
+
+            var self = this;
+            var creditSerie = {
+                name: 'Crédit',
+                data: []
+            };
+            var debitSerie = {
+                name: 'Débit',
+                data: []
+            };
+
+            self.creditOperations.forEach( function(el){
+                
+            });
+
+        }
 
     }
 
