@@ -28,8 +28,7 @@ export default {
     name: 'OperationComponent',
     props: [
         'operation',
-        'categories',
-        'callback'
+        'categories'
     ],
     data: function(){
         return {
@@ -80,7 +79,7 @@ export default {
             axios.delete( "http://localhost:8080/operations/delete" , {
                 data: this.operation
             })
-            .then( this.callback )
+            .then( this.submited )
             .catch(function (error) {
                 console.log(error);
             });
@@ -88,10 +87,13 @@ export default {
         editOperation: function(){
             this.operation.category = this.selected_category;
             axios.post( "http://localhost:8080/operations/create" , this.operation )
-            .then( this.callback )
+            .then( this.submited )
             .catch(function (error) {
                 console.log(error);
             });
+        },
+        submited: function(){
+            this.$emit('operationschange' , this.operation );
         }
     },
 }

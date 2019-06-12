@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                    <Operation v-for="operation in operations" :operation="operation" :categories="categories" :callback="fetchData"/>
+                    <Operation v-for="operation in operations"  v-bind:key="operation.id" :operation="operation" :categories="categories" v-on:operationschange="operationsChange"/>
             </tbody>
         </table>
 
@@ -66,7 +66,12 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-            
+            this.$emit('operationschange' , this.operation );
+        },
+
+        operationsChange(){
+            this.fetchData();
+            this.$emit( 'operationschange' );
         }
         
     },

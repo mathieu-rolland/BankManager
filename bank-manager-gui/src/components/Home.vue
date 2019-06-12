@@ -11,7 +11,7 @@
           <HomePieChart :operations="creditOperations" :categories="categoryHashmap" titleProps="Crédit"/>
         </b-col> 
         <b-col>
-          <Operations />
+          <Operations v-on:operationschange="fetchData"/>
         </b-col>
 
       </b-row>
@@ -46,6 +46,9 @@ export default {
 
   methods: {
     fetchData: function(){
+      this.debitOperations = [];
+      this.creditOperations = [];
+      this.categoryHashmap = [];
         this.fetchCategories( );
         this.fetchOperations( );
     },
@@ -85,6 +88,9 @@ export default {
 
   mounted() {
     this.fetchData();
+    this.$on('operationschange' , event => {
+      this.fetchData();
+    });
   },
 
 }
