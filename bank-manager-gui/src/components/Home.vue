@@ -88,9 +88,6 @@ export default {
 
   mounted() {
     this.fetchData();
-    this.$on('operationschange' , event => {
-      this.fetchData();
-    });
   },
 
 }
