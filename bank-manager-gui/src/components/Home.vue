@@ -13,7 +13,9 @@
         <b-col>
           <Operations v-on:operationschange="fetchData"/>
         </b-col>
-
+        <b-col>
+          <OperationsUpload />
+        </b-col>
       </b-row>
     </b-container>
 
@@ -26,6 +28,7 @@ import axios from 'axios'
 import HomePieChart from '@/components/HomePieChart.vue'
 import Operations from '@/components/Operation/OperationsComponent.vue'
 import Historical from '@/components/HistoricalComponent.vue'
+import OperationsUpload from '@/components/Operation/OperationsUploadComponent.vue'
 
 export default {
   name: 'home',
@@ -33,7 +36,7 @@ export default {
     msg: String
   },
   components:{
-    HomePieChart, Operations, Historical
+    HomePieChart, Operations, Historical, OperationsUpload
   },
   data: function(){
     return {

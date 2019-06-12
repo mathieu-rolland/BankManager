@@ -20,3 +20,6 @@ spring:
       password: admin
       roles:
       - ADMIN
+bank-manager:
+  storage: documents/
+  max-iteration-same-file: 100
