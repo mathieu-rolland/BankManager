@@ -1,25 +1,38 @@
 <template>
+
   <div class="hello">
     <h1>{{ msg }}</h1>
 
     <b-container class="row">
+
       <b-row>
+
         <b-col>
           <HomePieChart :operations="debitOperations" :categories="categoryHashmap" titleProps="Débit"/>
         </b-col>
+
         <b-col>
           <HomePieChart :operations="creditOperations" :categories="categoryHashmap" titleProps="Crédit"/>
-        </b-col> 
+        </b-col>
+
+      </b-row>
+
+      <b-row>
+
         <b-col>
           <Operations v-on:operationschange="fetchData"/>
         </b-col>
+
         <b-col>
           <OperationsUpload />
         </b-col>
+
       </b-row>
+
     </b-container>
 
   </div>
+
 </template>
 
 <script>

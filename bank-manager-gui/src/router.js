@@ -34,5 +34,11 @@ export default new Router({
       name: 'operations',
       component: () => import(/* webpackChunkName: "about" */ './views/Operations.vue')
     }
+    ,
+    {
+      path: '/auto-affect',
+      name: 'auto-affect',
+      component: () => import(/* webpackChunkName: "about" */ './views/AutoAffect.vue')
+    }
   ]
 })

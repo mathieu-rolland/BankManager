@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/category">Catégories</router-link> |
-      <router-link to="/operations">Opérations</router-link>
+      <router-link to="/operations">Opérations</router-link> |
+      <router-link to="/auto-affect">Auto affectation</router-link>
     </div>
     <router-view/>
   </div>
