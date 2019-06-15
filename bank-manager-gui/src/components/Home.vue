@@ -24,7 +24,7 @@
         </b-col>
 
         <b-col>
-          <OperationsUpload />
+          <OperationsUpload v-on:operationschange="fetchData"/>
         </b-col>
 
       </b-row>

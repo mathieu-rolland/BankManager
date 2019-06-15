@@ -1,6 +1,8 @@
 package com.perso.bank.services;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.transaction.Transactional;
 
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.perso.bank.domain.AutoAffect;
+import com.perso.bank.domain.Category;
+import com.perso.bank.domain.Operation;
 import com.perso.bank.domain.dto.AutoAffectDTO;
 import com.perso.bank.domain.dto.convert.AutoAffectConverter;
 import com.perso.bank.repository.AutoAffectRepository;
@@ -35,6 +39,20 @@ public class AutoAffectService {
 	@Transactional
 	public List<AutoAffectDTO> findAll() {
 		return autoAffectConverter.createDto( autoAffectRepository.findAll() );
+	}
+	
+	public Category affectOperation( Operation op ) {
+		
+		List<AutoAffect> autoAffects = autoAffectRepository.findAll();
+		
+		for( AutoAffect autoAffect : autoAffects ) {
+			Pattern pattern = Pattern.compile( autoAffect.getRegex() );
+			Matcher m = pattern.matcher( op.getLabel() );
+			if( m.find() ) return autoAffect.getCategory();
+					
+		}
+		return null;
+		
 	}
 	
 }

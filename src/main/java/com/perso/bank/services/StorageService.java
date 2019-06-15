@@ -48,10 +48,10 @@ public class StorageService {
 		}
 	}
 	
-	public String writeFileToLocalStorage( String originalFilename, MultipartFile file ) {
+	public File writeFileToLocalStorage( String originalFilename, MultipartFile file ) {
 		
 		if( file == null  ) {
-			return "Unexpected missing file!";
+			return null;
 		}
 		
 		FileOutputStream fos;
@@ -60,16 +60,16 @@ public class StorageService {
 			fos = new FileOutputStream( f );
 			fos.write( file.getBytes() );
 			fos.close();
+			return f;
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
-			return "No file found exception";
+			return null;
 		}catch (IOException e) {
 			e.printStackTrace();
-			return "Unexpected error when read/write file";
+			return null;
 		}catch (Exception e) {
-			return e.getMessage();
+			return null;
 		}
-		return "You successfully uploaded " + file.getOriginalFilename() + "!";
 	}
 	
 	private File generateNonExistingFile( String originalFilename ) throws Exception {

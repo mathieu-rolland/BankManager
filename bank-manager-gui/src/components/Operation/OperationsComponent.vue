@@ -40,10 +40,7 @@ export default {
 
     data : function(){
         return {
-            operations: [
-                {label: 'op1', amount:1},
-                {label: 'op2', amount:2},
-            ],
+            operations: [],
             categories: [],
         }
     },

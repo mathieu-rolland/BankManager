@@ -20,7 +20,9 @@ public class OperationConverter extends AbstractDtoConverter<Operation, Operatio
 		op.setAmount(dto.getAmount());
 		op.setOperationWay(dto.getOperationWay());
 		op.setLabel( dto.getLabel() );
-		op.setCategory( categoryConverter.createFromDto( dto.getCategory() ) );
+		if( dto.getCategory() != null ) {
+			op.setCategory( categoryConverter.createFromDto( dto.getCategory() ) );
+		}
 		op.setDate( dto.getDate() );
 		return op;
 	}

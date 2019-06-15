@@ -33,6 +33,7 @@ export default {
         },
          submitFile: function(){
             console.log('submit file');
+            var _self = this;
             let formData = new FormData();
             formData.append('file', this.file);
 
@@ -44,7 +45,8 @@ export default {
                         }
                     }
                     ).then(function(){
-                    console.log('SUCCESS!!');
+                        console.log('SUCCESS!!');
+                        _self.$emit('operationschange');
                     })
                     .catch(function(){
                     console.log('FAILURE!!');

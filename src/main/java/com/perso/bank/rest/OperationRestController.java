@@ -22,10 +22,6 @@ public class OperationRestController {
 	@Autowired
 	private OperationService operationService;
 
-	@Autowired
-	private StorageService storageService;
-	
-	
 	@RequestMapping( method = RequestMethod.GET , path = "/list" )
 	public List<OperationDTO> getAll(){
 		return operationService.getAll();
@@ -47,7 +43,8 @@ public class OperationRestController {
 		
 		String message = "";
 		if( file != null ) {
-			message = storageService.writeFileToLocalStorage( file.getOriginalFilename() , file );
+			//message = storageService.writeFileToLocalStorage( file.getOriginalFilename() , file );
+			operationService.importOperations(file.getOriginalFilename() , file);
 		}
 				
 		redirectAttributes.addFlashAttribute("message", message );

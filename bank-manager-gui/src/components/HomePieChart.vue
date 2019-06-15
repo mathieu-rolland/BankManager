@@ -79,13 +79,13 @@ export default {
                 operationsArray.forEach( function(el){
                     if( el.name == category.name ){
                         data = el;
-                        el.y = el.y + operationToAdd.amount;
+                        el.y = el.y + Math.abs(operationToAdd.amount);
                     }
                 });
                 if( !data ){
                     data = {
                         name: category.name,
-                        y: operationToAdd.amount,
+                        y: Math.abs(operationToAdd.amount),
                         color: category.color
                     }
                     operationsArray.push( data );
