@@ -70,7 +70,7 @@ export default {
     },
     fetchCategories: function( ){
         axios  
-          .get('http://localhost:8080/category/list')
+          .get('http://' + process.env.VUE_APP_API_URL + '/category/list')
           .then( response => (this.categoryToHashmap(response.data)) )
           .catch(function (error) {
               console.log(error);
@@ -79,7 +79,7 @@ export default {
 
     fetchOperations: function(  ){
       axios  
-        .get('http://localhost:8080/operations/list')
+        .get('http://' + process.env.VUE_APP_API_URL + '/operations/list')
         .then( response => (this.sortOperations( response.data )) )
         .catch(function (error) {
             console.log(error);
@@ -104,6 +104,7 @@ export default {
 
   mounted() {
     this.fetchData();
+    console.log(process.env);
   },
 
 }

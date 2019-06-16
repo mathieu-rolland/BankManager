@@ -37,7 +37,7 @@ export default {
             let formData = new FormData();
             formData.append('file', this.file);
 
-            axios.post( 'http://localhost:8080/operations/upload',
+            axios.post( 'http://' + process.env.VUE_APP_API_URL + '/operations/upload',
                     formData,
                     {
                         headers: {

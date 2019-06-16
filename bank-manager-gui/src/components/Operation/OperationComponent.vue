@@ -76,7 +76,7 @@ export default {
         },  
 
         deleteOperation: function(){
-            axios.delete( "http://localhost:8080/operations/delete" , {
+            axios.delete( "http://" + process.env.VUE_APP_API_URL + "/operations/delete" , {
                 data: this.operation
             })
             .then( this.submited )
@@ -86,7 +86,7 @@ export default {
         },
         editOperation: function(){
             this.operation.category = this.selected_category;
-            axios.post( "http://localhost:8080/operations/create" , this.operation )
+            axios.post( "http://" + process.env.VUE_APP_API_URL + "/operations/create" , this.operation )
             .then( this.submited )
             .catch(function (error) {
                 console.log(error);

@@ -53,12 +53,12 @@ export default {
         
         fetchData(){
             axios
-                .get('http://localhost:8080/category/list')
+                .get('http://' + process.env.VUE_APP_API_URL + '/category/list')
                 .then( response => (this.categories = response.data) )
                 .catch( error => (this.categories = error ));
 
             axios  
-                .get('http://localhost:8080/operations/list')
+                .get('http://' + process.env.VUE_APP_API_URL + '/operations/list')
                 .then( reponse => (this.operations = reponse.data) )
                 .catch(function (error) {
                     console.log(error);

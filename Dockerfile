@@ -12,4 +12,4 @@ COPY target/${JAR_FILE} /app/bank-manager.jar
 
 EXPOSE 8080
 
-ENTRYPOINT [ "java" , "-jar" , "/app/bank-manager.jar" , "-Dspring.active.profiles=devlocal"  ]
+ENTRYPOINT [ "java" , "-Dspring.active.profiles=devlocal" , "-jar" , "/app/bank-manager.jar"  ]

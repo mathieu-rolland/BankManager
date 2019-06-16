@@ -39,7 +39,7 @@ export default {
         var _self = this;
         _self.fetchAutoAffectList();
         axios
-            .get('http://localhost:8080/category/list')
+            .get('http://' + process.env.VUE_APP_API_URL + '/category/list')
             .then( response => (this.categories = response.data) )
             .catch( error => (this.categories = error ));
 
@@ -53,7 +53,7 @@ export default {
 
         fetchAutoAffectList: function(){
             var _self = this;
-            axios.get( 'http://localhost:8080/auto-affect/list')
+            axios.get( 'http://' + process.env.VUE_APP_API_URL + '/auto-affect/list')
             .then( function(response){
                 console.log(response);
                 _self.autoAffectList = response.data;

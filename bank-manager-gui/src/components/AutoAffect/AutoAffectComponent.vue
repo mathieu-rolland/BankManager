@@ -27,7 +27,7 @@ export default {
     methods: {
         deleteOperation: function(){
             var _self = this;
-            axios.delete( "http://localhost:8080/auto-affect/delete" , {
+            axios.delete( "http://" + process.env.VUE_APP_API_URL + "/auto-affect/delete" , {
                 data: this.autoAffect
             })
             .then( function(){

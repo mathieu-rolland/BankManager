@@ -95,7 +95,7 @@ export default {
     methods:{
         checkForm: function(e){
             e.preventDefault();
-            axios.post( "http://localhost:8080/category/create" , {
+            axios.post( "http://" + process.env.VUE_APP_API_URL + "/category/create" , {
                 color: this.color,
                 name: this.name
             })
@@ -106,7 +106,7 @@ export default {
         },
 
         deleteCategory: function(category){
-             axios.delete( "http://localhost:8080/category/delete" , {
+             axios.delete( "http://" + process.env.VUE_APP_API_URL + "/category/delete" , {
                 data: { id: category.id }
             })
             .then( this.fetchCategory )
@@ -122,7 +122,7 @@ export default {
         },
 
         modifyCategorySubmit(){
-            axios.post( "http://localhost:8080/category/create" , {
+            axios.post( "http://" + process.env.VUE_APP_API_URL + "/category/create" , {
                 color: this.modify_color,
                 name: this.modify_name,
                 id: this.modify_id
@@ -135,7 +135,7 @@ export default {
 
         fetchCategory(){
              axios
-            .get('http://localhost:8080/category/list')
+            .get('http://' + process.env.VUE_APP_API_URL + '/category/list')
             .then( response => (this.categories = response.data) )
             .catch( error => (this.categories = error ));
             this.$nextTick(() => {

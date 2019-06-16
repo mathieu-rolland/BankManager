@@ -59,7 +59,7 @@ export default {
             });
 
             axios  
-                .post('http://localhost:8080/operations/create' , {
+                .post('http://' + process.env.VUE_APP_API_URL + '/operations/create' , {
                     label: this.label,
                     amount: this.amount,
                     category: selectedCategoryObject,

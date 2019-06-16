@@ -68,7 +68,7 @@ export default {
                 }
             });
 
-            axios.post( 'http://localhost:8080/auto-affect/create' , 
+            axios.post( 'http://' + process.env.VUE_APP_API_URL + '/auto-affect/create' , 
                 {
                     regex: _self.regex,
                     category: selectedCategoryObject
