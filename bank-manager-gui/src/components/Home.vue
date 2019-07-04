@@ -7,11 +7,11 @@
 
       <b-row>
 
-        <b-col>
+        <b-col class="chart-center-middle">
           <HomePieChart :operations="debitOperations" :categories="categoryHashmap" titleProps="Débit"/>
         </b-col>
 
-        <b-col>
+        <b-col class="chart-center-middle">
           <HomePieChart :operations="creditOperations" :categories="categoryHashmap" titleProps="Crédit"/>
         </b-col>
 
@@ -115,4 +115,10 @@ export default {
   .row{
     margin: auto;
   }
+
+  .chart-center-middle{
+    margin: auto;
+    vertical-align: middle;
+  }
+
 </style>
