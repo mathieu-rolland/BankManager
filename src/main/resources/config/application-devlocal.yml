@@ -26,6 +26,9 @@ spring:
       password: admin
       roles:
       - ADMIN
+logging:
+  level:
+    root: debug
 bank-manager:
   storage: documents/
   max-iteration-same-file: 100

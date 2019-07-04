@@ -45,6 +45,10 @@ export default {
         }
     },
 
+    props: {
+        parentOperations: undefined
+    },
+
     mounted: function(){
         this.fetchData();
     },
@@ -57,13 +61,18 @@ export default {
                 .then( response => (this.categories = response.data) )
                 .catch( error => (this.categories = error ));
 
-            axios  
-                .get('http://' + process.env.VUE_APP_API_URL + '/operations/list')
-                .then( reponse => (this.operations = reponse.data) )
-                .catch(function (error) {
-                    console.log(error);
-                });
-            this.$emit('operationschange' , this.operation );
+            if( this.parentOperations ){
+                this.operations = this.parentOperations;
+            }else{
+
+                axios  
+                    .get('http://' + process.env.VUE_APP_API_URL + '/operations/list')
+                    .then( reponse => (this.operations = reponse.data) )
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                this.$emit('operationschange' , this.operation );
+            }
         },
 
         operationsChange(){
@@ -71,6 +80,12 @@ export default {
             this.$emit( 'operationschange' );
         }
         
+    },
+
+    watch: {
+        parentOperations: function(data){
+            this.operations = data;
+        }
     },
 
 }

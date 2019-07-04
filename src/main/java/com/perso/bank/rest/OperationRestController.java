@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.perso.bank.domain.dto.OperationDTO;
 import com.perso.bank.services.OperationService;
-import com.perso.bank.services.StorageService;
 
 @RestController
 @RequestMapping("/operations")
@@ -22,6 +21,11 @@ public class OperationRestController {
 	@Autowired
 	private OperationService operationService;
 
+	@RequestMapping( method = RequestMethod.GET , path = "/month" )
+	public List<OperationDTO> getAll( @RequestParam("date") String date ){
+		return operationService.getWithDate( date );
+	}
+	
 	@RequestMapping( method = RequestMethod.GET , path = "/list" )
 	public List<OperationDTO> getAll(){
 		return operationService.getAll();
