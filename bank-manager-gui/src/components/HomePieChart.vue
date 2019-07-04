@@ -2,7 +2,7 @@
 
     <div class="component">
         <div class="chart" v-if="hasToBeDeplayed">
-            <h2>{{titleProps}}</h2>
+            <h2>{{titleProps}} - {{hasToBeDeplayed}}</h2>
             <div class="bank-chart">
                 <highcharts :options="chartOptions" ref="highcharts"/>
             </div>
@@ -61,7 +61,6 @@ export default {
         createSeries: function(){
             
             if( this.operations && this.categories){
-                this.hasToBeDeplayed = false;
                 var _self = this;
                 var serie = {
                     name: this.titleProps,
@@ -79,7 +78,7 @@ export default {
                         this.$refs.highcharts.chart.series[i].remove();   
                     }
                     this.$refs.highcharts.chart.addSeries( serie );
-                    _self.hasToBeDeplayed = ( serie.data !== undefined && serie.data.length > 0);
+                    _self.hasToBeDeplayed = serie.data.length > 0;
                 }
             }
         },
