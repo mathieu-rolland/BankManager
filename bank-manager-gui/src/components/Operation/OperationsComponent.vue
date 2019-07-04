@@ -1,8 +1,8 @@
 <template>
 
-    <div>
+    <div class="component operations">
 
-        <table class="table">
+        <table class="table" v-if="operations.length > 0">
             <thead>
                 <tr>
                     <th>Libellé</th>
@@ -75,3 +75,12 @@ export default {
 
 }
 </script>
+
+<style scoped>
+    
+    .component.operations {
+        min-width: 400px;
+    }
+
+
+</style>

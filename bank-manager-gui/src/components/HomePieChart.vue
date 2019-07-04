@@ -1,9 +1,17 @@
 <template>
 
-    <div class="chart">
-        <h2>{{titleProps}}</h2>
-        <div class="bank-chart">
-            <highcharts :options="chartOptions" ref="highcharts"/>
+    <div class="component">
+        <div class="chart" v-if="hasToBeDeplayed">
+            <h2>{{titleProps}} - {{hasToBeDeplayed}}</h2>
+            <div class="bank-chart">
+                <highcharts :options="chartOptions" ref="highcharts"/>
+            </div>
+        </div>
+        <div class="no-chart bank-chart" v-else>
+            <p>
+                <img class="empty" src="../assets/empty.png" /> <br />
+                <span>Aucune operation de {{ titleProps.toLowerCase() }} disponible pour ce mois.</span>
+            </p>
         </div>
     </div>
 
@@ -27,10 +35,11 @@ export default {
     data: function(){
         return {
             chart: undefined,
+            hasToBeDeplayed: true,
             chartOptions: {
                 chart: {
                     type: "pie",
-                    width: '500'
+                    width: '530'
                 },
                 title: this.titleProps,
                 series: []
@@ -50,25 +59,27 @@ export default {
     },
     methods: {
         createSeries: function(){
-
-            if( this.operations && this.categories ){
-                var self = this;
+            
+            if( this.operations && this.categories){
+                var _self = this;
                 var serie = {
                     name: this.titleProps,
                     data:[]
                 };
 
                 this.operations.forEach( el => {
-                    self.groupOperationByCategory( serie.data , el );
+                    _self.groupOperationByCategory( serie.data , el );
                 });
 
                 //Suppression des series déjà ajouter sinon bug sur ajout multiple de serie.
-                var size = this.$refs.highcharts.chart.series.length;
-                for( var i = 0 ; i < size ; i++ ){
-                    this.$refs.highcharts.chart.series[i].remove();   
+                if( this.$refs.highcharts ){
+                    var size = this.$refs.highcharts.chart.series.length;
+                    for( var i = 0 ; i < size ; i++ ){
+                        this.$refs.highcharts.chart.series[i].remove();   
+                    }
+                    this.$refs.highcharts.chart.addSeries( serie );
+                    _self.hasToBeDeplayed = serie.data.length > 0;
                 }
-                this.$refs.highcharts.chart.addSeries( serie );
-    
             }
         },
 
@@ -76,6 +87,7 @@ export default {
             var category = operationToAdd.category;
             var data = undefined;
             if( category ){
+                this.hasToBeDeplayed = true;
                 operationsArray.forEach( function(el){
                     if( el.name == category.name ){
                         data = el;
@@ -103,6 +115,14 @@ export default {
         width: 510px;
         margin: auto;
         text-align:center;
+    }
+
+    .no-chart{
+        padding: 50px;
+    }
+
+    img.empty{
+        width: 50px;
     }
 
 </style>

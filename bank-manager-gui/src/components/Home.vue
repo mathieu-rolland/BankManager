@@ -7,11 +7,11 @@
 
       <b-row>
 
-        <b-col>
+        <b-col class="chart-center-middle">
           <HomePieChart :operations="debitOperations" :categories="categoryHashmap" titleProps="Débit"/>
         </b-col>
 
-        <b-col>
+        <b-col class="chart-center-middle">
           <HomePieChart :operations="creditOperations" :categories="categoryHashmap" titleProps="Crédit"/>
         </b-col>
 
@@ -112,7 +112,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
   .row{
     margin: auto;
   }
+
+  .col {
+    min-width: 365px;
+  }
+
+  .chart-center-middle{
+    margin: auto;
+    vertical-align: middle;
+  }
+
 </style>

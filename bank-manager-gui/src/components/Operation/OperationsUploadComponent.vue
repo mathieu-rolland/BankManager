@@ -1,6 +1,6 @@
 <template>
 
-    <div class="operations upload">
+    <div class="operations component upload">
 
         <div class="large-12 medium-12 small-12 cell">
             <label>File
@@ -56,3 +56,11 @@ export default {
 
 }
 </script>
+
+<style scoped>
+
+    .component.upload {
+        width: 400px;
+    }
+
+</style>
