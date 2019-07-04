@@ -112,8 +112,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
   .row{
     margin: auto;
+  }
+
+  .col {
+    min-width: 365px;
   }
 
   .chart-center-middle{

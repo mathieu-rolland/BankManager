@@ -1,7 +1,7 @@
 <template>
 
     <div class="component">
-        <div class="chart" v-if="operations.length > 0">
+        <div class="chart" v-if="hasToBeDeplayed">
             <h2>{{titleProps}}</h2>
             <div class="bank-chart">
                 <highcharts :options="chartOptions" ref="highcharts"/>
@@ -35,6 +35,7 @@ export default {
     data: function(){
         return {
             chart: undefined,
+            hasToBeDeplayed: true,
             chartOptions: {
                 chart: {
                     type: "pie",
@@ -58,8 +59,9 @@ export default {
     },
     methods: {
         createSeries: function(){
-
-            if( this.operations && this.categories && this.$refs.highcharts){
+            
+            if( this.operations && this.categories){
+                this.hasToBeDeplayed = false;
                 var _self = this;
                 var serie = {
                     name: this.titleProps,
@@ -71,12 +73,14 @@ export default {
                 });
 
                 //Suppression des series déjà ajouter sinon bug sur ajout multiple de serie.
-                var size = this.$refs.highcharts.chart.series.length;
-                for( var i = 0 ; i < size ; i++ ){
-                    this.$refs.highcharts.chart.series[i].remove();   
+                if( this.$refs.highcharts ){
+                    var size = this.$refs.highcharts.chart.series.length;
+                    for( var i = 0 ; i < size ; i++ ){
+                        this.$refs.highcharts.chart.series[i].remove();   
+                    }
+                    this.$refs.highcharts.chart.addSeries( serie );
+                    _self.hasToBeDeplayed = ( serie.data !== undefined && serie.data.length > 0);
                 }
-                this.$refs.highcharts.chart.addSeries( serie );
-    
             }
         },
 
@@ -84,6 +88,7 @@ export default {
             var category = operationToAdd.category;
             var data = undefined;
             if( category ){
+                this.hasToBeDeplayed = true;
                 operationsArray.forEach( function(el){
                     if( el.name == category.name ){
                         data = el;
@@ -115,7 +120,6 @@ export default {
 
     .no-chart{
         padding: 50px;
-        width: 400px;
     }
 
     img.empty{
