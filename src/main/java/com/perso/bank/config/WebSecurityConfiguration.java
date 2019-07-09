@@ -31,7 +31,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
     }
 	
 	@Bean
-	@Profile( value = { ApplicationProfile.DEV , ApplicationProfile.DEV_LOCAL} )
+	@Profile( value = { ApplicationProfile.DEV , ApplicationProfile.DEV_LOCAL , ApplicationProfile.PROD} )
 	public CorsConfigurationSource corsConfigurationSource() throws Exception {
 		System.out.println("Test MRO");
 		CorsConfiguration corsConfig = new CorsConfiguration();
