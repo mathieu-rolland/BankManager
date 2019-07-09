@@ -18,7 +18,7 @@
             </tbody>
         </table>
 
-        <CreateOperation :categories="categories" :callback="fetchData" />
+        <CreateOperation :categories="categories" v-on:operationschange="operationsChange" />
 
     </div>
 

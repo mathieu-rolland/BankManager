@@ -4,7 +4,7 @@
         <td>{{operation.label}}</td>
         <td>{{operation.amount}}</td>
         <td>
-            <b-form-select v-model="selected" :options="optionsCategory" @change="categoryChange" ></b-form-select>
+            <b-form-select v-bind:style="{ color: displayCategoryColor }" v-model="selected" :options="optionsCategory" @change="categoryChange" ></b-form-select>
         </td>
         <td>{{ displayDate(operation.date) }}</td>
         <td>{{operation.operationWay}}</td>
@@ -42,7 +42,8 @@ export default {
             selected_category: "",
             modal: undefined,
             optionsCategory: [],
-            selected: null
+            selected: null,
+            displayCategoryColor: ""
         }
     },
     mounted: function(){
@@ -90,6 +91,7 @@ export default {
             //selection de la categorie suivant l'operation
             if ( this.operation.category ){
                 this.selected = this.operation.category.id;
+                this.displayCategoryColor = this.operation.category.color;
             }
         },  
 
@@ -103,7 +105,6 @@ export default {
             });
         },
         editOperation: function( operation ){
-            this.operation.category = this.selected_category;
             axios.post( "http://" + process.env.VUE_APP_API_URL + "/operations/create" , operation )
             .then( this.submited )
             .catch(function (error) {
