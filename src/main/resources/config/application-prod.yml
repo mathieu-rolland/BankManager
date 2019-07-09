@@ -1,0 +1,33 @@
+
+spring:
+  profiles:
+    active:
+    - prod
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://$DATABASE_HOST:$DATABASE_PORT/$DATABASE_NAME
+    username: $DATABASE_USER
+    password: $DATABASE_PASSWD
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database-plateform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  liquibase:
+    contexts: prod
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+  security:
+    user:
+      name: admin
+      password: admin
+      roles:
+      - ADMIN
+bank-manager:
+  storage: /data
+  max-iteration-same-file: 100
