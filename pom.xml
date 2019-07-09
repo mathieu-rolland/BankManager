@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.perso</groupId>
 	<artifactId>BankManager</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>rb-1.0.0</version>
 	<name>BankManager</name>
 	<description>Bank account manager</description>
 
@@ -61,6 +61,20 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>2.9.9</version>
+		</dependency>
+				
+		
 	</dependencies>
 
 	<build>
@@ -69,7 +83,20 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<repository>local/bank-manager</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+			</plugin>
+    	</plugins>
 	</build>
 
 </project>
