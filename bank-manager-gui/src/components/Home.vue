@@ -180,7 +180,7 @@ export default {
  }
 
   .col {
-    min-width: 365px;
+    min-width: 530px;
   }
 
   .chart-center-middle{

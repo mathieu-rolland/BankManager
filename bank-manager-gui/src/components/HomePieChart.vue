@@ -2,7 +2,7 @@
 
     <div class="component">
         <div class="chart" v-show="hasToBeDeplayed">
-            <h2>{{titleProps}} - {{hasToBeDeplayed}}</h2>
+            <h2>{{titleProps}}</h2>
             <div class="bank-chart">
                 <highcharts :options="chartOptions" ref="highcharts"/>
             </div>
@@ -115,7 +115,7 @@ export default {
 <style>
 
     .bank-chart{
-        width: 510px;
+        width: 530px;
         margin: auto;
         text-align:center;
     }
