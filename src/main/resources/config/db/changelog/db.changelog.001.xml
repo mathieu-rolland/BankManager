@@ -94,4 +94,31 @@
 		
 	</changeSet>
 	
+	
+	<changeSet id="9" author="MRO" context="prod">
+	
+		<createTable tableName="AUTO_AFFECT">
+		
+			<column name="ID" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			
+			<column name="REGEX" type="VARCHAR(100)">
+				<constraints nullable="false"/>
+			</column>
+			
+			<column name="CATEGORY_ID" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			
+		</createTable>
+		
+		<addForeignKeyConstraint constraintName="FK_AUTO_AFFECT_CATEGORY" 
+					referencedTableName="CATEGORY" 
+					baseColumnNames="CATEGORY_ID"
+					baseTableName="AUTO_AFFECT" 
+					referencedColumnNames="ID" />
+		
+	</changeSet>
+	
 </databaseChangeLog>
