@@ -42,7 +42,7 @@
       <b-row>
 
         <b-col>
-          <Operations v-on:operationschange="fetchData" :parentOperations="debitOperations"/>
+          <Operations v-on:operationschange="fetchData" :parentOperations="allOperations"/>
         </b-col>
 
         <b-col>
@@ -77,6 +77,7 @@ export default {
   data: function(){
     return {
       message: "loading",
+      allOperations: [],
       debitOperations: [],
       creditOperations: [],
       categoryHashmap: [],
@@ -117,6 +118,7 @@ export default {
     },
 
     sortOperations: function( operationList ){
+      this.allOperations = operationList;
       operationList.forEach( el => {
                 if( el.operationWay == 'DEBIT' ) this.debitOperations.push( el );
                 else this.creditOperations.push( el );

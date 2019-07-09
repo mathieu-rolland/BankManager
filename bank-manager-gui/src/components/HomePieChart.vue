@@ -1,13 +1,13 @@
 <template>
 
     <div class="component">
-        <div class="chart" v-if="hasToBeDeplayed">
+        <div class="chart" v-show="hasToBeDeplayed">
             <h2>{{titleProps}} - {{hasToBeDeplayed}}</h2>
             <div class="bank-chart">
                 <highcharts :options="chartOptions" ref="highcharts"/>
             </div>
         </div>
-        <div class="no-chart bank-chart" v-else>
+        <div class="no-chart bank-chart" v-show="!hasToBeDeplayed">
             <p>
                 <img class="empty" src="../assets/empty.png" /> <br />
                 <span>Aucune operation de {{ titleProps.toLowerCase() }} disponible pour ce mois.</span>
@@ -59,7 +59,8 @@ export default {
     },
     methods: {
         createSeries: function(){
-            
+            var _self = this;
+             _self.hasToBeDeplayed = true;
             if( this.operations && this.categories){
                 var _self = this;
                 var serie = {
@@ -72,13 +73,15 @@ export default {
                 });
 
                 //Suppression des series déjà ajouter sinon bug sur ajout multiple de serie.
-                if( this.$refs.highcharts ){
+                if( this.$refs.highcharts && serie.data.length > 0){
                     var size = this.$refs.highcharts.chart.series.length;
                     for( var i = 0 ; i < size ; i++ ){
                         this.$refs.highcharts.chart.series[i].remove();   
                     }
                     this.$refs.highcharts.chart.addSeries( serie );
                     _self.hasToBeDeplayed = serie.data.length > 0;
+                }else{
+                    _self.hasToBeDeplayed = false;
                 }
             }
         },
