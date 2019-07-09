@@ -1,6 +1,6 @@
 <template>
 
-    <tr v-if="operation && categories">
+    <tr v-if="operation && categories" v-bind:style="{ color: displayCategoryColor }">
         <td>{{operation.label}}</td>
         <td>{{operation.amount}}</td>
         <td>
@@ -9,10 +9,6 @@
         <td>{{ displayDate(operation.date) }}</td>
         <td>{{operation.operationWay}}</td>
         <td>
-            <img v-b-modal.modal-operation
-                variant="primary" 
-                src="../../assets/edit.png"
-                class="edit button"/>
             <img 
                 class="delete button" alt="delete.png" src="../../assets/delete.png"
                 v-on:click="deleteOperation()"/>
