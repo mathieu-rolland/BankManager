@@ -4,7 +4,7 @@
         <td>{{operation.label}}</td>
         <td>{{operation.amount}}</td>
         <td>
-            <b-form-select v-model="selected" :options="optionsCategory" ></b-form-select>
+            <b-form-select v-model="selected" :options="optionsCategory" @change="categoryChange" ></b-form-select>
         </td>
         <td>{{ displayDate(operation.date) }}</td>
         <td>{{operation.operationWay}}</td>
@@ -42,7 +42,7 @@ export default {
             selected_category: "",
             modal: undefined,
             optionsCategory: [],
-            selected: undefined
+            selected: null
         }
     },
     mounted: function(){
@@ -60,13 +60,19 @@ export default {
         },
         operation: function(){
             this.preSelectCategoryForCurrentOperation();
-        }
+        },
 
     },
     methods: {
 
         displayDate: function( date ){
             return moment(date).format( "DD/MM/YYYY" );
+        },
+
+        categoryChange: function( el ){
+            var copy = JSON.parse(JSON.stringify(this.operation));
+            copy.category = this.optionsCategory[this.selected - 1].obj;
+            this.editOperation( copy );
         },
 
         formatCategoryArray: function(){
@@ -96,9 +102,9 @@ export default {
                 console.log(error);
             });
         },
-        editOperation: function(){
+        editOperation: function( operation ){
             this.operation.category = this.selected_category;
-            axios.post( "http://" + process.env.VUE_APP_API_URL + "/operations/create" , this.operation )
+            axios.post( "http://" + process.env.VUE_APP_API_URL + "/operations/create" , operation )
             .then( this.submited )
             .catch(function (error) {
                 console.log(error);
