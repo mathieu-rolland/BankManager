@@ -14,9 +14,9 @@
                 <label for="amount">Montant</label>
                 <b-form-input id="amount" v-model="amount" type="number" name="amount" placeholder="Entrer le montant" />
                     
-                <label for="way">Date</label>
-                <datepicker :value="operationDate" :input-class="'datepicker-input'"></datepicker>
-
+                <label for="way">Date - {{ operationDate }}</label>
+                <datepicker v-model="operationDate" :input-class="'datepicker-input'"></datepicker>
+        
                 <label for="way">Sens</label>
                 <b-form-select name="way" v-model="selected_way">
                     <option value="DEBIT">Débit</option>
@@ -50,8 +50,7 @@ export default {
     },
 
     props: {
-        categories: Array,
-        callback: Function
+        categories: Array
     },
 
     data: function(){
@@ -85,11 +84,15 @@ export default {
                     operationWay: this.selected_way,
                     date: moment(this.operationDate).set({hour:0,minute:0,second:0,millisecond:0}).format()
                 })
-                .then( this.callback )
+                .then( this.submited )
                 .catch(function (error) {
                     console.log(error);
                 });
 
+        },
+
+        submited: function(){
+            this.$emit('operationschange' , this.operation );
         }
     },
 
