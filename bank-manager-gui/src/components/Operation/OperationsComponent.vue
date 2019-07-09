@@ -8,6 +8,7 @@
                     <th>Libellé</th>
                     <th>Montant</th>
                     <th>Category</th>
+                    <th>Date</th>
                     <th>Type</th>
                     <th>Actions</th>
                 </tr>

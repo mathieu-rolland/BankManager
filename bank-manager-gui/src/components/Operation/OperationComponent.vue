@@ -6,6 +6,7 @@
         <td>
             <b-form-select v-model="selected" :options="optionsCategory" ></b-form-select>
         </td>
+        <td>{{ displayDate(operation.date) }}</td>
         <td>{{operation.operationWay}}</td>
         <td>
             <img v-b-modal.modal-operation
@@ -23,9 +24,15 @@
 <script>
 
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
     name: 'OperationComponent',
+
+    components: {
+        moment
+    },
+
     props: [
         'operation',
         'categories'
@@ -57,6 +64,11 @@ export default {
 
     },
     methods: {
+
+        displayDate: function( date ){
+            return moment(date).format( "DD/MM/YYYY" );
+        },
+
         formatCategoryArray: function(){
             var self = this;
 
