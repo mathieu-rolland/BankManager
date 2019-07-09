@@ -20,6 +20,9 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   liquibase:
     contexts: dev
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
   security:
     user:
       name: admin
